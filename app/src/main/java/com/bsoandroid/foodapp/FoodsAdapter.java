@@ -62,9 +62,8 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHold
         @Override
         public void onClick(View view) {
             int selected = getLayoutPosition();
-            Food selectedFood = foodData.get(selected);
             Intent intent = new Intent(view.getContext(), DetailActivity.class);
-            intent.putExtra("food", selectedFood.judul);
+            intent.putExtra("id", selected);
             view.getContext().startActivity(intent);
         }
     }

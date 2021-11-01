@@ -3,6 +3,7 @@ package com.bsoandroid.foodapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -13,22 +14,19 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        String judul = getIntent().getStringExtra("judul");
+        int id = getIntent().getIntExtra("id", -1);
 
-        Food food = getFood(judul);
+        ArrayList<Food> list = FoodData.getData();
+        Food food = list.get(id);
 
         if (food != null) {
+            TextView judulTV = findViewById(R.id.detail_judul);
+            TextView hargaTV = findViewById(R.id.detail_harga);
+            TextView deskripsiTV = findViewById(R.id.detail_deskripsi);
 
+            judulTV.setText(food.judul);
+            hargaTV.setText(String.valueOf(food.harga));
+            deskripsiTV.setText(food.deskripsi);
         }
-    }
-
-    public Food getFood(String judul) {
-        ArrayList<Food> list = FoodData.getData();
-        for (Food data : list) {
-            if (data.judul.equals(judul)) {
-                return data;
-            }
-        }
-        return null;
     }
 }
