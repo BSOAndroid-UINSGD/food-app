@@ -3,6 +3,7 @@ package com.bsoandroid.foodapp;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,13 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHolder> {
     private ArrayList<Food> foodData;
 
     FoodsAdapter(ArrayList<Food> list) {
-        foodData = list;
+        this.foodData = list;
     }
 
     @NonNull
@@ -31,7 +34,12 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHold
     public void onBindViewHolder(@NonNull FoodsAdapter.ListViewHolder holder, int position) {
         Food food = foodData.get(position);
         holder.judul.setText(food.judul);
-        holder.harga.setText(food.harga);
+        holder.harga.setText(String.valueOf(food.harga));
+//
+//        TextView judulTV = holder.judul;
+//        TextView hargaTV = holder.harga;
+//        judulTV.setText(food.judul);
+//        hargaTV.setText(food.harga);
     }
 
     @Override
@@ -41,7 +49,7 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHold
 
     class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //ImageView imagePhoto;
-        TextView judul, harga;
+        public TextView judul, harga;
         public ListViewHolder(View itemView) {
             super(itemView);
             //Buat Viewnya
@@ -56,7 +64,7 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHold
             int selected = getLayoutPosition();
             Food selectedFood = foodData.get(selected);
             Intent intent = new Intent(view.getContext(), DetailActivity.class);
-            intent.putExtra("food", (Parcelable) selectedFood);
+            intent.putExtra("food", selectedFood.judul);
             view.getContext().startActivity(intent);
         }
     }
