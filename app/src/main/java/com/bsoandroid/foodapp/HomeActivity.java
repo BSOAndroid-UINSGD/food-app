@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 this.finish();
+                break;
             default:
         }
         return super.onOptionsItemSelected(item);
