@@ -35,11 +35,8 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHold
         Food food = foodData.get(position);
         holder.judul.setText(food.judul);
         holder.harga.setText(String.valueOf(food.harga));
-//
-//        TextView judulTV = holder.judul;
-//        TextView hargaTV = holder.harga;
-//        judulTV.setText(food.judul);
-//        hargaTV.setText(food.harga);
+        holder.image.setBackground(food.image);
+        holder.image.setImageDrawable(food.image);
     }
 
     @Override
@@ -48,12 +45,11 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ListViewHold
     }
 
     class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        //ImageView imagePhoto;
+        public ImageView image;
         public TextView judul, harga;
         public ListViewHolder(View itemView) {
             super(itemView);
-            //Buat Viewnya
-            //imagePhoto = itemView.findViewById(R.id.image_photo);
+            image = itemView.findViewById(R.id.image_photo);
             judul = itemView.findViewById(R.id.food_name);
             harga = itemView.findViewById(R.id.food_price);
             itemView.setOnClickListener(this);
